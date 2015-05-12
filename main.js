@@ -6,6 +6,7 @@ window.onload = function() {
     chrome.serial.getDevices(function(ports){
     onGetDevices(ports);
     buildPortPicker(ports);
+    document.getElementById('secs').innerText = '0.000';
     });
 
 };
@@ -49,6 +50,7 @@ function process(){
                     readBuffer = '';
                     data = '';
                     number++ ;
+                    displaySecs(number);
                     console.log(number);
                 }
                 readBuffer += data;
@@ -57,6 +59,10 @@ function process(){
         }
         lock = false;
     }
+}
+function displaySecs(number) {
+  number = number/1000;
+  document.getElementById('secs').innerText = number;
 }
 var onError = function(errorInfo)  {
   console.log(errorInfo.data);
