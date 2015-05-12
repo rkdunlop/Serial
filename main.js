@@ -21,9 +21,11 @@ function onRead(readInfo){
   
     // only append the newly available data to arrayReceived.
     arrayReceived = arrayReceived.concat(new Uint8Array(readInfo.data));
+    //console.log(arrayReceived);
     process();//operates on the global arrayReceived array.
 }
 var readBuffer = ''; 
+var number = '';
 // made global because in one invocation a portion of a command could be sent.
 // we want to the buffer to include incomplete commands from previous invocations of process() too.
 // e.g. in one iteration process could only get 1a2c0a1
@@ -41,16 +43,16 @@ function process(){
                 var data = String.fromCharCode(uint8View[innerIndex]);
                 // data is always a single character. for 11 data is first 1 and then
                 // in the next iteration another 1 is sent.
-                console.log("data : " + data);
-                document.getElementById('secs').innerText = data;
-                if(data === 'a' || data === 'b' || data === 'c'){
-                    command = data;
-                    performAction(command,readBuffer);
-                    command = '';
+                
+               
+                if(data === '\n'){
                     readBuffer = '';
                     data = '';
+                    number++ ;
+                    console.log(number);
                 }
                 readBuffer += data;
+                
             }
         }
         lock = false;
