@@ -1,5 +1,22 @@
 /* CSS file placeholder. */
+
 @font-face {
-  font-family: digital;
-  src: local(d)
+  font-family: digital-7;
+  src: local(digital-7), url('fonts/digital-7.ttf');
+}
+#display {
+  background:black;
+  height:500px;
+  display:table;
+  width:100%;
+}
+
+#secs {
+  display:table-cell;
+  vertical-align:middle;
+  margin:auto;
+  text-align:center;
+  color:red;
+  font-family:digital-7; 
+  font-size:250pt; 
 }
