@@ -2,7 +2,7 @@ var connectionId = -1;
 var str='';
 window.onload = function() {
   document.querySelector('#greeting').innerText =
-    'Port Jefferson MagLev Timer';
+    'Timer';
     chrome.serial.getDevices(function(ports){
     onGetDevices(ports);
     buildPortPicker(ports);
