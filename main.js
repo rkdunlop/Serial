@@ -26,7 +26,7 @@ function onRead(readInfo){
     if (str.charAt(str.length-1) === '\n') {
       stringReceived += str.substring(0, str.length-1);
       console.log(parseFloat(stringReceived));
-      //displaySecs(stringReceived);
+      displaySecs(stringReceived);
       //displaySecs(parseFloat(stringReceived));
       stringReceived = ' ';
     }else {
@@ -70,7 +70,6 @@ function buildPortPicker(ports) {
   var portPicker = document.getElementById('port-picker');
   ports.forEach(function(port) {
     var portOption = document.createElement('option');
-    
     portOption.name = portOption.innerText = port.path;
     portOption.value = portOption.innerText = port.path;
     portPicker.appendChild(portOption);
@@ -98,6 +97,7 @@ function buildResetButton() {
   var resetButton = document.getElementById('reset');
   
   resetButton.onclick = function() {
+    window.chrome.runtime.reload();
     console.log('reset');
     document.getElementById('secs').innerText = '0000';
     console.log(connectionId);
@@ -110,6 +110,8 @@ function buildResetButton() {
 var onDisconnect = function(result) {
   if (result) {
     console.log("Disconnected from the serial port");
+    stringReceived = '';
+    str = '';
   } else {
     console.log("Disconnect failed");
   }
